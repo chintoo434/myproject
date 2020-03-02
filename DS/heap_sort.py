@@ -26,3 +26,5 @@ arr = [ 12, 11, 13, 5, 6, 7]
 heapsort(arr,len(arr))
 for i in range(0, len(arr)):
     print(arr[i])
+
+print(time.time()-tm)
