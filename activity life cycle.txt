@@ -1,0 +1,206 @@
+
+***** Activity life cycle **********
+
+package com.example.activitylifecycle;  
+import android.os.Bundle;  
+import android.app.Activity;  
+import android.util.Log;  
+import android.view.Menu;  
+public class MainActivity extends Activity {  
+    @Override  
+    protected void onCreate(Bundle savedInstanceState) {  
+        super.onCreate(savedInstanceState);  
+        setContentView(R.layout.activity_main);  
+        Log.d("lifecycle","onCreate invoked");  
+    }  
+    @Override  
+    protected void onStart() {  
+        super.onStart();  
+         Log.d("lifecycle","onStart invoked");  
+    }  
+    @Override  
+    protected void onResume() {  
+        super.onResume();  
+         Log.d("lifecycle","onResume invoked");  
+    }  
+    @Override  
+    protected void onPause() {  
+        super.onPause();  
+         Log.d("lifecycle","onPause invoked");  
+    }  
+    @Override  
+    protected void onStop() {  
+        super.onStop();  
+         Log.d("lifecycle","onStop invoked");  
+    }  
+       @Override  
+    protected void onRestart() {  
+        super.onRestart();  
+         Log.d("lifecycle","onRestart invoked");  
+    }     
+    @Override  
+    protected void onDestroy() {  
+        super.onDestroy();  
+         Log.d("lifecycle","onDestroy invoked");  
+    }  
+}
+
+
+2.****** $ to INR
+
+package com.example.convertor;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+
+    public void btnClick(View view){
+        EditText dollarAmount = (EditText)findViewById(R.id.DollarAmount);
+        String dollars = dollarAmount.getText().toString();
+        Double doubleDollars = Double.parseDouble(dollars);
+        Double doubleInr = 71.72 * doubleDollars;
+        String toastText = doubleInr.toString() + "$";
+        Toast.makeText(this,toastText, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+
+3. ********* AddNumber
+
+
+package com.example.addnumber;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    public void onButtonClick(View v){
+        EditText e1 = (EditText)findViewById(R.id.editText);
+        EditText e2 = (EditText)findViewById(R.id.editText2);
+        TextView t1 = (TextView)findViewById(R.id.textView);
+
+        int num1 = Integer.parseInt(e1.getText().toString());
+        int num2 = Integer.parseInt(e2.getText().toString());
+        int sum = num1 + num2;
+
+        t1.setText(Integer.toString(sum));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+
+
+4. ********** password Listener ***********
+
+package com.example.ratingapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+   // public void onButtonClick(View v){
+     //   TextView text_v = (TextView)findViewById(R.id.editText);
+       // String str = text_v.getText().toString();
+        //Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    //}
+
+    private EditText pass_word;
+    private Button button_sbm;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        addListenerOnButton();
+    }
+
+    public void addListenerOnButton(){
+        pass_word = (EditText)findViewById(R.id.editText);
+        button_sbm = (Button)findViewById(R.id.button);
+
+        button_sbm.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, pass_word.getText(), Toast.LENGTH_SHORT).show();
+
+                                          }
+                                      }
+
+        );
+    }
+}
+
+5. ************ Checked Button ********
+
+package com.example.checkbox;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private CheckBox check1, check2, check3;
+    private Button button_sel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        addListenerOnButton();
+    }
+
+    public void addListenerOnButton(){
+        check1 = (CheckBox)findViewById(R.id.checkBox);
+        check2 = (CheckBox)findViewById(R.id.checkBox2);
+        check3 = (CheckBox)findViewById(R.id.checkBox3);
+        button_sel = (Button)findViewById(R.id.button);
+
+        button_sel.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StringBuffer result = new StringBuffer();
+                        result.append("Dog: ").append(check1.isChecked());
+                        result.append("\nCat: ").append(check2.isChecked());
+                        result.append("\nCow: ").append(check3.isChecked());
+
+                        Toast.makeText(MainActivity.this, result.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+}
